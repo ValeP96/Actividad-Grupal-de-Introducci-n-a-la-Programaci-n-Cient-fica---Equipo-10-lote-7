@@ -12,3 +12,10 @@ Este dataset contiene información de la expresión de 46 genes en 65 pacientes,
 
 ## Análisis de datos
 
+* Parámetros bioquímicos → Judit
+
+* Heatmap → Carla
+
+* Distribución de la expresión génica en función del tratamiento 
+
+* Distribución de la expresión génica en función del tipo de tumor
