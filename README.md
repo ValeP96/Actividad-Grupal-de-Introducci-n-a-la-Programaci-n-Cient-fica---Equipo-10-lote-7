@@ -16,8 +16,8 @@ Este dataset contiene información de la expresión de 46 genes en 65 pacientes,
 
 * Heatmap → Carla
 
-* Distribución de la expresión génica en función del tratamiento 
+* Distribución de la expresión génica en función del tratamiento → Ana Belén
 
-* Distribución de la expresión génica en función del tipo de tumor
+* Distribución de la expresión génica en función del tipo de tumor → Valeria
 
-* Edad
+* Edad → Ana Amador
