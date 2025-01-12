@@ -1,3 +1,11 @@
 # Script para analizar la distribución de la expresión de genes comparados por tipo de tumor
 
+for (gen in genes) {
+  boxplot <- Exp_genes %>%
+    ggplot(aes(x = tumor, y = .data[[gen]], fill = tumor)) +
+    geom_boxplot() +
+    labs(title = gen, x = "Tumor", y = "Expresión Génica")
+print(boxplot)
+}
+
 
