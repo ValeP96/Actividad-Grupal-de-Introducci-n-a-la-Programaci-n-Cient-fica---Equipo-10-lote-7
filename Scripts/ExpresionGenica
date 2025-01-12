@@ -1,1 +1,12 @@
+# Para agregar al informe final
+
+# Librerias
+library(tidyverse)
+library(ggplot2)
+
+# Database
+data???? <- read_csv("Dataset expresión genes.csv")
+
+# Vector genes
+genes <- names(Exp_genes)[startsWith(names(Exp_genes), "AQ")]
 
