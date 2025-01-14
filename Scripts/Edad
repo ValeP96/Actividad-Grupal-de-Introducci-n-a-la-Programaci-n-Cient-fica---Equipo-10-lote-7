@@ -1,7 +1,10 @@
 # En función de la edad, tendremos 2 categorías según la mediana de los datos (categoría 1: edad <percentil 50 de edad; categoría 2: edad >=percentil 50 de edad). 
 #Tenemos una variable categorica que es edad y una numerica que es genes, como n es mayor que 30, pasamos a mirar la homogeneidad de varianzas
-# Calcular el percentil 50 (mediana) de la variable 'edad'
+# Cargar las librerías necesarias
+library(dplyr)
+library(car)
 
+# Calcular el percentil 50 (mediana) de la variable 'edad'
 percentil_50 <- median(df$edad, na.rm = TRUE)
 
 # Crear una nueva variable categórica basada en el percentil 50
@@ -11,10 +14,6 @@ genes <- df %>% select(starts_with("AQ_"))
 
 # Instalar el paquete necesario (si no está instalado)
 if (!require(car)) install.packages("car")
-
-# Cargar las librerías necesarias
-library(dplyr)
-library(car)
 
 # Realizar el test de Levene
 # Para asegurarme de que categoria_edad es un factor utilizamos as.factor
