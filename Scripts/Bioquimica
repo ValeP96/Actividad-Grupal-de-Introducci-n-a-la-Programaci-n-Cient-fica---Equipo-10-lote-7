@@ -123,3 +123,9 @@ cpk <- ggplot(df,aes(x=cpk)) +
   geom_density(linewidth=0.6)
 
 ### Unión de todos los gráficos individuales
+freq_bioquim <- (glucosa + leucocitos + linfocitos + neutrofilos + chol + hdl + hierro + 
+                   igA + igE + igG + igN + ldl + pcr + transferrina + trigliceridos + cpk) + 
+  plot_layout(ncol=4) +
+  plot_annotation(title="Concentración de moléculas buiquímicas en los pacientes", 
+                  theme=theme(plot.title=element_text(hjust=0.5, size = 20)))
+freq_bioquim
