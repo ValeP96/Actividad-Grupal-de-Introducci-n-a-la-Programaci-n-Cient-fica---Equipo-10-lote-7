@@ -1,4 +1,5 @@
 # En función de la edad, tendremos 2 categorías según la mediana de los datos (categoría 1: edad <percentil 50 de edad; categoría 2: edad >=percentil 50 de edad). 
+
 # Tenemos una variable categórica que es edad y una numérica que es genes, como n es mayor que 30, pasamos a mirar la homogeneidad de varianzas.
 
 # Cargar las librerías
@@ -16,6 +17,7 @@ genes <- df %>% select(starts_with("AQ_"))
 
 # Realizar el test de Levene
 # Para asegurar de que categoria_edad es un factor utilizamos as.factor
+
 categoria_edad <- as.factor(categoria_edad)
 
 # Aplicar el test de Levene a cada columna en genes
@@ -35,6 +37,7 @@ valores_significativos <- resultados_levene %>%
 
 # Mostrar las columnas con valores significativos
 print(valores_significativos)
+
 # Hemos encontrado que el gen AQ_IL6 tiene un valor de 0'012, no cumple con la homogeneidad de varianzas. 
 # Aplicaremos el test de Welch al gen AQ_IL6, y el t-student a los genes con homogeneidad.
 
@@ -70,4 +73,6 @@ tabla3
 test_resultwelch <- t.test(df$AQ_IL6 ~ df_tabla$categoria_edad, var.equal = FALSE)
 print(test_resultwelch)
 
-#En ninguna de las dos categorías, se rechaza la hipótesis nula al tener valores de p-value superiores a 0'05. Por lo tanto, las medias de los dos grupos son iguales.
+# En ninguna de las dos categorías, se rechaza la hipótesis nula al tener valores de p-value superiores a 0'05. 
+# Por lo tanto, las medias de los dos grupos son iguales.
+
