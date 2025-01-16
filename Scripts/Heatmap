@@ -6,20 +6,25 @@ library(dplyr)
 library(pheatmap)
 
 Dataset_genes <- read.table(file.choose(), header = T) #para elegir la carpeta que quiero trabajar
-datos_bioquimicos <- Dataset_genes %>% select("glucosa", "chol", "hdl", starts_with("AQ_")) #Los dos puntos indican desde donde hasta donde
-corr_matrizdatosbio <- cor(datos_bioquimicos, method = "spearman")
-corr_matrizdatosbio
 
-#Una vez teniendo la matriz, selecciono las columnas y filass que quiero que me enfrenten unas con otras
-dim(corr_matrizdatosbio) #Para saber las dimensoines de mi matriz
-corr_matrix_seleccionada <- corr_matrizdatosbio[4:49, 1:3]
+#Creacion del data frame
+datos2 <- data.frame(Dataset) #Creacion del data frame
+datos2 <- datos %>%
+  select(starts_with("AQ_") -AQ_ADIPOQ, -AQ_NOX5)
+  as.matrix(datos2)
+
+#Con esto se selecciona las columnas que quiero en el data frame. %>% es un pipe que indica que se esta trabajando sobre df
+#Nombrar a los pacientes como filas. Rownames solo va con data.frames
+rownames(datos2) <- datos2$id 
+scale(datos2)
 
 #Graficar la matriz
 set.seed(1995)
-pheatmap(corr_matrix_seleccionada, 
-         main = "Heatmap",
+pheatmap(datos2, 
+         main = "Heatmap", 
+         scale = "row", 
          cluster_cols = TRUE,
          cluster_rows = TRUE,
-         color = colorRampPalette(c("blue", "white", "red"))(100))
+         color = colorRampPalette(c("blue", "ivory", "red"))(10000))
 
 
