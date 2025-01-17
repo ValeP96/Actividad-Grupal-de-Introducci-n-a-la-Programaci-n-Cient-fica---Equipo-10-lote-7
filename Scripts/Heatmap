@@ -8,10 +8,10 @@ library(pheatmap)
 Dataset_genes <- read.table(file.choose(), header = T) #para elegir la carpeta que quiero trabajar
 
 #Creacion del data frame
-datos2 <- data.frame(Dataset) #Creacion del data frame
-datos2 <- datos %>%
+df <- data.frame(Dataset_genes) 
+datos2 <- df %>%
   select(starts_with("AQ_") -AQ_ADIPOQ, -AQ_NOX5)
-  as.matrix(datos2)
+  as.matrix(df)
 
 #Con esto se selecciona las columnas que quiero en el data frame. %>% es un pipe que indica que se esta trabajando sobre df
 #Nombrar a los pacientes como filas. Rownames solo va con data.frames
