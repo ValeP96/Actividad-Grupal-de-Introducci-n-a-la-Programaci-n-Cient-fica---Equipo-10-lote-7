@@ -8,10 +8,9 @@ library(pheatmap)
 Dataset_genes <- read.table(file.choose(), header = T) #para elegir la carpeta que quiero trabajar
 
 #Creacion del data frame
-datos2 <- data.frame(Dataset) #Creacion del data frame
-datos2 <- datos %>%
-  select(starts_with("AQ_") -AQ_ADIPOQ, -AQ_NOX5)
-  as.matrix(datos2)
+df <- data.frame(Dataset_genes) 
+datos2 <- df %>%
+  select(starts_with("AQ_"), -AQ_ADIPOQ, -AQ_NOX5)
 
 #Con esto se selecciona las columnas que quiero en el data frame. %>% es un pipe que indica que se esta trabajando sobre df
 #Nombrar a los pacientes como filas. Rownames solo va con data.frames
@@ -20,11 +19,13 @@ scale(datos2)
 
 #Graficar la matriz
 set.seed(1995)
-pheatmap(datos2, 
-         main = "Heatmap", 
-         scale = "row", 
-         cluster_cols = TRUE,
-         cluster_rows = TRUE,
-         color = colorRampPalette(c("blue", "ivory", "red"))(10000))
 
-
+map <- pheatmap(genes_scaled, 
+                main = "Perfil de Expresión Génica",
+                scale = "row", 
+                cluster_cols = TRUE,
+                cluster_rows = TRUE, legend_breaks = c(-3, 3, 4.9),
+                legend_labels = c("Baja", "Alta", "Expresión\n"),
+                legend = TRUE,
+                color = colorRampPalette(c("blue", "ivory", "red"))(10000))
+print(map)
