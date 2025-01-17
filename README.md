@@ -12,7 +12,7 @@ Este repositorio contiene:
 * El *dataset expresión genes*.
 * Un directorio con los scripts para R utilizados para cada análisis.
 * Un directorio con los gráficos obtenidos en R.
-* Un markdown **N/N** que contiene el informe final.
+* Un markdown *Expresión génica en pacientes con cáncer* que contiene el informe final.
 
 ## Datos de expresión génica
 El *dataset expresión genes* contiene información de la expresión de 46 genes en 65 pacientes, cada uno con distintos tipos de tratamiento (A y B) y tumor (colorrectal, de pulmón y de mama).
