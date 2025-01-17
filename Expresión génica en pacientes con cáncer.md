@@ -16,3 +16,25 @@ library(tidyverse)
 library(ggplot2)
 library(pheatmap)
 ```
+
+### Parámetros bioquímicos
+
+### Distribución de la expresión de genes comparados por tipo de tratamiento
+
+### Distribución de la expresión de genes comparados por tipo de tumor
+
+Realizamos gráficos de caja para poder observar cómo varía la expresión de los genes estudiados en función del tipo de tumor:
+* CCR o cáncer colorectal
+* CM o cáncer de mama
+* CP o cáncer de pulmón
+
+```{r boxplot tumor}
+
+```
+
+Para la mayoría de los genes, se observa una mayor expresión génica en pacientes con cáncer de pulmón, seguida por aquellos con cáncer de mama y por último con tumor colorrectal.
+
+### Distribución de la expresión de genes sgún la edad
+
+### Mapeo del perfil de expresión génica
+
