@@ -1,4 +1,4 @@
-# Script para analizar la distribución de la expresión de genes comparados por tipo de tumor
+# Script para analizar la distribución de la expresión de genes comparados por los tres tipos de tumor que tiene el dataframe. 
 
 for (gen in genes) {
   boxplot <- df %>%
