@@ -1,4 +1,4 @@
-# Análisis de la expressión de parámetros bioquímicos entre los pacientes
+# Análisis de la expressión de parámetros bioquímicos entre los diferentes pacientes que tiene nuestro dataframe 
 
 ## Librerias
 library(ggplot2)
@@ -8,7 +8,7 @@ library(patchwork)
 ## Database
 df <- read.csv("Dataset expresión genes.csv")
 
-### Creación de los histogramas de cada molécula bioquímica a analizar
+### Creación de los histogramas de cada parámetro bioquímico a analizar:
 glucosa <- ggplot(df,aes(x=glucosa)) + 
   geom_histogram(aes(y=..density..),fill =c("powderblue"), color="black", bins = 30) +
   labs(title="Glucosa",x="Nivel de glucosa (md/dL)", y="Frecuencia") +
