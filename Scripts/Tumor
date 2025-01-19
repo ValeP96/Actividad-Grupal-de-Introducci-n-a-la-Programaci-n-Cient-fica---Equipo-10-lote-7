@@ -4,8 +4,9 @@ for (gen in genes) {
   boxplot <- Exp_genes %>%
     ggplot(aes(x = tumor, y = .data[[gen]], fill = tumor)) +
     geom_boxplot() +
-    labs(title = gen, x = "Tumor", y = "Expresión Génica")
-print(boxplot)
+    scale_fill_manual(values = c("CM" = "lightcoral", "CCR" = "lightblue", "CP" = "lightgreen")) +
+    labs(title = gen, x = "Tumor", y = "Expresión Génica") +
+    theme_minimal()
+  print(boxplot)
 }
-
 
