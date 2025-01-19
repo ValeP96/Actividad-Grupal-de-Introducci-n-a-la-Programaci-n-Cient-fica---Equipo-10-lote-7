@@ -20,6 +20,12 @@ library(patchwork)
 
 ### Parámetros bioquímicos
 
+En los histogramas de *Parámetros bioquímicos* se representa la concentración de diferentes biomoléculas en pacientes con cáncer. Dependiendo de la biomolécula analizada, se pueden observar distintas distribuciones de datos.
+
+```{r histogramas bioquimica}
+
+```
+
 ### Distribución de la expresión de genes comparados por tipo de tratamiento
 
 ### Distribución de la expresión de genes comparados por tipo de tumor
