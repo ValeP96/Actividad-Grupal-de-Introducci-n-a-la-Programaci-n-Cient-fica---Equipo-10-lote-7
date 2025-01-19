@@ -12,4 +12,3 @@ for (gen in genes) {
     theme(legend.position = "none")
   print(boxplot)
 }
-
