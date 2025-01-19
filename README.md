@@ -27,16 +27,3 @@ Con el objetivo de identificar patrones de expresión, en este proyecto analizam
 * La expresión génica según la edad.
 
 Finalmente, a través de un heatmap visualizamos el nivel de expresión de cada gen por paciente.
-
-## NOTE TO SELF a quién le toca qué
-
-* Parámetros bioquímicos → Judit
-
-* Heatmap → Carla
-
-* Distribución de la expresión génica en función del tratamiento → Ana Belén
-
-* Distribución de la expresión génica en función del tipo de tumor → Valeria
-
-* Edad → Ana Amador
-
