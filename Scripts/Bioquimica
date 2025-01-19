@@ -1,4 +1,4 @@
-# Análisis de la expressión de parámetros bioquímicos entre los pacientes
+# Análisis de la expressión de parámetros bioquímicos entre los diferentes pacientes que tiene nuestro dataframe 
 
 # Librerias
 library(ggplot2)
