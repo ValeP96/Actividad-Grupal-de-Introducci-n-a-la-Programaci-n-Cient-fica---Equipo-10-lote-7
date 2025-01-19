@@ -9,12 +9,13 @@ En primer lugar, importamos el dataset bajo el nombre df:
 ```{r}
 df <- read_csv("Dataset expresión genes.csv")
 ```
-Deben instalarse y cargarse los paquetes apropiados. En este caso utilizamos tidyverse para asistir en el análisis de los datos, así como ggplot2 y pheatmap para realizar los gráficos pertinentes.
+Deben instalarse y cargarse los paquetes apropiados. En este caso utilizamos tidyverse para asistir en el análisis de los datos, así como ggplot2 y pheatmap para realizar los gráficos pertinentes. También se utiliza patchwork para unir los gráficos individuales de un mismo análisis.
 
 ```{r}
 library(tidyverse)
 library(ggplot2)
 library(pheatmap)
+library(patchwork)
 ```
 
 ### Parámetros bioquímicos
