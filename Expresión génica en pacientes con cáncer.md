@@ -36,7 +36,24 @@ Realizamos gráficos de caja para poder observar cómo varía la expresión de l
 * CP o cáncer de pulmón
 
 ```{r boxplot tumor}
+#Crear el vector con los genes
+genes <- names(df)[startsWith(names(df), "AQ")]
 
+#Crear boxplots utilizando un bucle
+for (gen in genes) {
+  boxplot <- df %>%
+    ggplot(aes(x = tumor, y = .data[[gen]], fill = tumor)) +
+    geom_boxplot() +
+    scale_fill_manual(values = c("CM" = "lightcoral", "CCR" = "lightblue", "CP" = "lightgreen")) +
+    labs(
+      title = paste("Distribucion de la expresión de", gen, "por tipo de tumor"),
+      x = "Tipo de Tumor",
+      y = "Nivel de Expresión"
+    ) +
+    theme_classic() +
+    theme(legend.position = "none")
+  print(boxplot)
+}
 ```
 
 Para la mayoría de los genes, se observa una mayor expresión génica en pacientes con cáncer de pulmón, seguida por aquellos con cáncer de mama y por último con tumor colorrectal.
