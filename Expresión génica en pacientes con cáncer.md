@@ -74,12 +74,14 @@ datos2 <- df %>%
 rownames(df) <- datos2$id 
 scale(df)
 set.seed(1995)
-pheatmap(datos2, 
-         main = "Heatmap", 
-         scale = "row", 
-         cluster_cols = TRUE,
-         cluster_rows = TRUE,
-         color = colorRampPalette(c("blue", "ivory", "red"))(10000))
+map <- pheatmap(genes_scaled, 
+                main = "Perfil de Expresión Génica",
+                scale = "row", 
+                cluster_cols = TRUE,
+                cluster_rows = TRUE, legend_breaks = c(-3, 3, 4.9),
+                legend_labels = c("Baja", "Alta", "Expresión\n"),
+                legend = TRUE,
+                color = colorRampPalette(c("blue", "ivory", "red"))(10000))
 ```
 Obervando el gráfico, sacamos las siguientes conclusiones: 
 - El gen CCL5, que codifica para una quimiocina implicada en la respuesta inflamatoria, está ampliamente expresado en la mayoría de los pacientes, siendo el que tiene un mayor nivel de expresión generalmente, excepto en 3 pacientes.
