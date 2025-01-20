@@ -61,4 +61,29 @@ Para la mayoría de los genes, se observa una mayor expresión génica en pacien
 ### Distribución de la expresión de genes sgún la edad
 
 ### Mapeo del perfil de expresión génica
+Mapeamos los valores de expresión de genes para poder visualizar posibles patrones entre los datos de los pacientes realizando un Heatmap. El script que utilizamos es el siguiente:
 
+```{r}
+datos2 <- df %>%
+  select(starts_with("AQ_") -AQ_ADIPOQ, -AQ_NOX5)
+  as.matrix(df)
+```
+#Con esto se selecciona las columnas que quiero en el data frame. %>% es un pipe que indica que se esta trabajando sobre df
+#Nombrar a los pacientes como filas. Rownames solo va con data.frames
+```{r}
+rownames(df) <- datos2$id 
+scale(df)
+set.seed(1995)
+pheatmap(datos2, 
+         main = "Heatmap", 
+         scale = "row", 
+         cluster_cols = TRUE,
+         cluster_rows = TRUE,
+         color = colorRampPalette(c("blue", "ivory", "red"))(10000))
+```
+Obervando el gráfico, sacamos las siguientes conclusiones: 
+- El gen CCL5, que codifica para una quimiocina implicada en la respuesta inflamatoria, está ampliamente expresado en la mayoría de los pacientes, siendo el que tiene un mayor nivel de expresión generalmente, excepto en 3 pacientes.
+- Otro gen que se expresa altamente en la mayoría de los pacientes es el TGB1, lo cual es lógico ya que codifica para (TGF-β1), una citocina multifuncional con un papel central en la regulación de una amplia variedad de procesos biológicos.
+- El gen GPX1 está altamente expresado en dos pacientes y en un menor nivel en 6 pacientes. Este gen codifica para una enzima que protege del daño oxidativo. 
+- El gen FOX03 regula la resistencia al estrés y está expresado en alto nivel más o menos en la mitad de los pacientes y en la otra en un nivel menor.
+- Los genes ADIPOQ y NOX5 solamente están expresados altamente en un paciente, por eso se eliminaron previamente, para no interferir en los resultados. 
