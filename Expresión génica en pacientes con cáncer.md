@@ -174,9 +174,9 @@ for (gen in genes) {
 
 Para la mayoría de los genes, se observa una mayor expresión génica en pacientes con cáncer de pulmón, seguida por aquellos con cáncer de mama y por último con tumor colorrectal.
 
-### Distribución de la expresión de genes sgún la edad
-# En función de la edad, tendremos 2 categorías según la mediana de los datos (categoría 1: edad <percentil 50 de edad; categoría 2: edad >=percentil 50 de edad). 
-# Tenemos una variable categórica que es edad y una numérica que es genes, como n es mayor que 30, pasamos a mirar la homogeneidad de varianzas.
+### Distribución de la expresión de genes según la edad
+En función de la edad, tendremos 2 categorías según la mediana de los datos (categoría 1: edad <percentil 50 de edad; categoría 2: edad >=percentil 50 de edad). 
+Tenemos una variable categórica que es edad y una numérica que es genes, como n es mayor que 30, pasamos a mirar la homogeneidad de varianzas.
 ```{r}
 # Cargar las librerías
 library(dplyr)
@@ -251,8 +251,7 @@ test_resultwelch <- t.test(df$AQ_IL6 ~ df_tabla$categoria_edad, var.equal = FALS
 print(test_resultwelch)
 ```
 
-# En ninguna de las dos categorías, se rechaza la hipótesis nula al tener valores de p-value superiores a 0'05. 
-# Por lo tanto, las medias de los dos grupos son iguales.
+En ninguna de las dos categorías, se rechaza la hipótesis nula al tener valores de p-value superiores a 0'05. Por lo tanto, las medias de los dos grupos son iguales.
 
 ### Mapeo del perfil de expresión génica
 
