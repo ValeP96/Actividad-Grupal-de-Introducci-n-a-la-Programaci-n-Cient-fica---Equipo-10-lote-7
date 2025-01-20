@@ -1,0 +1,69 @@
+Distribución de la expresión génica en función del tratamiento
+
+Setup
+# Cargar Librerías
+library(tidyverse)
+library(gtsummary)
+library(stats)
+library(nortest)
+
+# Cargar dataset
+df <- read.csv("Dataset expresión genes.csv")
+
+
+Análisis de Normalidad
+
+#Filtrar por tipo de tratamiento
+data_treatment <- df %>% group_by(trat)
+
+#Realizar Test de Shapiro-Wilk a cada gen
+normality_tests <- df %>% 
+  pivot_longer(cols = starts_with("AQ_"), names_to = "Gen", values_to = "Value") %>% 
+  group_by(Gen, trat) %>% 
+  summarise(p_value = shapiro.test(Value)$p.value, .groups = "drop") %>% 
+  pivot_wider(names_from = trat, values_from = p_value, names_prefix = "Tratamiento_")
+normality_tests
+
+Calcular estadísticas descriptivas para distribuciones no-normales
+
+# Mediana e IQR debido a la no-normalidad de los datos.
+descriptive_stats <- df %>% 
+  pivot_longer(cols = starts_with("AQ_"), names_to = "Gen", values_to = "Value") %>% 
+  group_by(Gen, trat) %>% 
+  summarise(
+    Median = median(Value, na.rm = TRUE),
+    IQR = IQR(Value, na.rm = TRUE),
+    .groups = "drop"
+  ) %>% 
+  mutate(Median_IQR = paste0(Median, " (", IQR, ")")) %>% 
+  select(Gen, trat, Median_IQR) %>% 
+  pivot_wider(names_from = trat, values_from = Median_IQR) %>% 
+  rename(`Tratamiento A` = tratA, `Tratamiento B` = tratB)
+colnames(descriptive_stats) <- c("Gen", "Tratamiento A\nP50 (RIQ)", "Tratamiento B\nP50 (RIQ)")
+descriptive_stats
+
+
+Aplicación de test estadísticos no paramétricos
+
+# Prueba de Wilcoxon para la compraracion de dos grupos independientes.
+gen_pvalues <- df %>% 
+    pivot_longer(cols = starts_with("AQ_"), names_to = "Gen", values_to = "Value") %>% 
+    group_by(Gen) %>% 
+    summarise(
+      p_value = tryCatch({
+        wilcox.test(Value ~ trat, exact = FALSE)$p.value
+      }, error = function(e) NA),
+      .groups = "drop"
+    )
+print(gen_pvalues)
+
+
+Generacion de tabla resumen que permita una interpretacion mas clara de los resultados
+
+# Unión de estadísticas descriptivas y p-valores
+tabla_resumen <- descriptive_stats %>% 
+  left_join(gen_pvalues, by = "Gen") %>% 
+  rename(`P-Value` = p_value)
+tabla_resumen
+
+
