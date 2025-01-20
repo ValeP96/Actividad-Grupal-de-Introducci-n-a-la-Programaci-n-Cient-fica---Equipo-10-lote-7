@@ -7,8 +7,12 @@ for (gen in genes) {
     ggplot(aes(x = tumor, y = .data[[gen]], fill = tumor)) +
     geom_boxplot() +
     scale_fill_manual(values = c("CM" = "lightcoral", "CCR" = "lightblue", "CP" = "lightgreen")) +
-    labs(title = gen, x = "Tumor", y = "Expresión Génica") +
-    theme_minimal()+
+    labs(
+      title = paste("Distribucion de la expresión de", gen, "por tipo de tumor"),
+      x = "Tipo de Tumor",
+      y = "Nivel de Expresión"
+    ) +
+    theme_classic() +
     theme(legend.position = "none")
   print(boxplot)
 }
