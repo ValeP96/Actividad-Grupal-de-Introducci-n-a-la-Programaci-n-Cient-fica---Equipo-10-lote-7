@@ -175,6 +175,84 @@ for (gen in genes) {
 Para la mayoría de los genes, se observa una mayor expresión génica en pacientes con cáncer de pulmón, seguida por aquellos con cáncer de mama y por último con tumor colorrectal.
 
 ### Distribución de la expresión de genes sgún la edad
+# En función de la edad, tendremos 2 categorías según la mediana de los datos (categoría 1: edad <percentil 50 de edad; categoría 2: edad >=percentil 50 de edad). 
+# Tenemos una variable categórica que es edad y una numérica que es genes, como n es mayor que 30, pasamos a mirar la homogeneidad de varianzas.
+```{r}
+# Cargar las librerías
+library(dplyr)
+library(car)
+```
+```{r boxplot tumor}
+# Calcular el percentil 50 (mediana) de la variable 'edad'
+percentil_50 <- median(df$edad, na.rm = TRUE)
+
+# Crear una nueva variable categórica basada en el percentil 50
+categoria_edad <- ifelse(df$edad < percentil_50, "Categoría 1: edad < percentil_50", "Categoría 2: edad <= percentil_50")
+
+# Filtrar columnas que comienzan con "AQ_" para los genes 
+genes <- df %>% select(starts_with("AQ_"))
+
+# Realizar el test de Levene
+# Para asegurar de que categoria_edad es un factor utilizamos as.factor
+
+categoria_edad <- as.factor(categoria_edad)
+
+# Aplicar el test de Levene a cada columna en genes
+resultados_levene <- genes %>%
+  summarise(across(
+    everything(),
+    ~ leveneTest(.x, categoria_edad)$`Pr(>F)`[1],
+    .names = "levene_{.col}"
+  ))
+
+print(resultados_levene)
+
+# Filtrar valores p menores a 0.05 en resultados_levene
+valores_significativos <- resultados_levene %>%
+  select(where(is.numeric)) %>% # Seleccionar solo columnas numéricas
+  summarise(across(everything(), ~ any(.x < 0.05), .names = "es_significativo_{.col}"))
+
+# Mostrar las columnas con valores significativos
+print(valores_significativos)
+
+# Hemos encontrado que el gen AQ_IL6 tiene un valor de 0'012, no cumple con la homogeneidad de varianzas. 
+# Aplicaremos el test de Welch al gen AQ_IL6, y el t-student a los genes con homogeneidad.
+
+# Aplicamos test estadisticos
+gen_welch <- c("AQ_IL6")
+genes_t.test <- genes %>% select(-AQ_IL6)
+genes_t.test <- colnames(genes_t.test)
+
+df_tabla <- cbind(genes, categoria_edad)
+df_tabla <- na.omit(df_tabla)
+any(is.na(df_tabla))
+
+tabla3 <- df_tabla %>%
+  tbl_summary(
+    by = categoria_edad,
+    statistic = all_continuous() ~ "{median} ({p25} - {p75})",
+    digits = all_continuous() ~ function(x) format(x, digits = 2, scientific = TRUE)
+  ) %>%
+  add_p(
+    test = list(
+      all_of(as.character(genes_t.test)) ~ "t.test", 
+      all_of(as.character(gen_welch)) ~ function(x) {
+        # Aplicar t-test con var.equal = FALSE para Welch
+        test_result <- t.test(gen_welch ~ df_tabla$categoria_edad, var.equal = FALSE)
+        return(test_result$p.value)
+      }
+    ),
+    pvalue_fun = ~ ifelse(.x < 0.05, paste0(style_pvalue(.x, digits = 3), "*"), style_pvalue(.x, digits = 3))
+  )
+tabla3
+
+# Al no aparecer el valor de p-value del test de Welch en la tabla3, lo calcularemos a parte:
+test_resultwelch <- t.test(df$AQ_IL6 ~ df_tabla$categoria_edad, var.equal = FALSE)
+print(test_resultwelch)
+```
+
+# En ninguna de las dos categorías, se rechaza la hipótesis nula al tener valores de p-value superiores a 0'05. 
+# Por lo tanto, las medias de los dos grupos son iguales.
 
 ### Mapeo del perfil de expresión génica
 
