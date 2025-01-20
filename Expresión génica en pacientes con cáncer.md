@@ -74,7 +74,7 @@ datos2 <- df %>%
 rownames(df) <- datos2$id 
 scale(df)
 set.seed(1995)
-map <- pheatmap(genes_scaled, 
+map <- pheatmap(datos2, 
                 main = "Perfil de Expresión Génica",
                 scale = "row", 
                 cluster_cols = TRUE,
