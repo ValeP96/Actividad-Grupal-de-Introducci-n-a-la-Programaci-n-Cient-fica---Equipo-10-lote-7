@@ -66,4 +66,113 @@ tabla_resumen <- descriptive_stats %>%
   rename(`P-Value` = p_value)
 tabla_resumen
 
+#Formación de gráficos gen versus los dos tipos de tratamientos
+Plot1 <-ggplot(df, aes(fill = trat, y = AQ_ALOX5)) + 
+  geom_boxplot(outlier.color = "black", outlier.size = 2, width = 0.2) + 
+  labs(title = "AQ_ALOX5", x = "Tratamiento", y = "Expressión") + 
+  scale_fill_manual(values = c("lightpink", "lightblue")) + 
+  theme_minimal() + 
+  theme(plot.title = element_text(hjust = 0.5, face = "bold", size=7), axis.title.x = element_text(size = 8), axis.title.y = element_text(size = 8), legend.text = element_text(size = 6),legend.title = element_text(size = 7))
 
+Plot2 <- ggplot(df, aes(fill = trat, y = AQ_CD274)) +
+  geom_boxplot(outlier.color = "black", outlier.size = 2, width = 0.7) +
+  labs(title = "AQ_CD274", x = "Tratamiento", y = "Expression") +
+  scale_fill_manual(values = c("lightpink", "lightblue")) +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5, face = "bold", size=7), axis.title.x = element_text(size = 8), axis.title.y = element_text(size = 8), legend.text = element_text(size = 6),legend.title = element_text(size = 7))
+
+Plot3 <- ggplot(df, aes(fill = trat, y = AQ_CHKA)) +
+  geom_boxplot(outlier.color = "black", outlier.size = 2, width = 0.7) +
+  labs(title = "AQ_CHKA", x = "Tratamiento", y = "Expression") +
+  scale_fill_manual(values = c("lightpink", "lightblue")) +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5, face = "bold", size=7), axis.title.x = element_text(size = 8), axis.title.y = element_text(size = 8),legend.text = element_text(size = 6),legend.title = element_text(size = 7))
+
+Plot4 <- ggplot(df, aes(fill = trat, y =AQ_CSF2)) +
+  geom_boxplot(outlier.color = "black", outlier.size = 2, width = 0.7) +
+  labs(title = "AQ_CSF2", x = "Tratamiento", y = "Expression") +
+  scale_fill_manual(values = c("lightpink", "lightblue")) +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5, face = "bold", size=7), axis.title.x = element_text(size = 8), axis.title.y = element_text(size = 8),legend.text = element_text(size = 6),legend.title = element_text(size = 7))
+
+Plot5 <- ggplot(df, aes(fill = trat, y = AQ_FOXO3)) +
+  geom_boxplot(outlier.color = "black", outlier.size = 2, width = 0.7) +
+  labs(title = "AQ_FOX3", x = "Tratamiento", y = "Expression") +
+  scale_fill_manual(values = c("lightpink", "lightblue")) +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5, face = "bold", size=7), axis.title.x = element_text(size = 8), axis.title.y = element_text(size = 8), legend.text = element_text(size = 6),legend.title = element_text(size = 7))
+
+Plot6 <- ggplot(df, aes(fill = trat, y = AQ_IL6)) +
+  geom_boxplot(outlier.color = "black", outlier.size = 2, width = 0.7) +
+  labs(title = "AQ_IL6", x = "Tratamiento", y = "Expression") +
+  scale_fill_manual(values = c("lightpink", "lightblue")) +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5, face = "bold", size=7), axis.title.x = element_text(size = 8), axis.title.y = element_text(size = 8), legend.text = element_text(size = 6),legend.title = element_text(size = 7))
+
+Plot7 <- ggplot(df, aes(fill = trat, y = AQ_LDHA)) +
+  geom_boxplot(outlier.color = "black", outlier.size = 2, width = 0.7) +
+  labs(title = "AQ_LDHA", x = "Tratamiento", y = "Expression") +
+  scale_fill_manual(values = c("lightpink", "lightblue")) +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5, face = "bold", size=7), axis.title.x = element_text(size = 8), axis.title.y = element_text(size = 8), legend.text = element_text(size = 6),legend.title = element_text(size = 7))
+
+Plot8 <- ggplot(df, aes(fill = trat, y = AQ_LIF)) +
+  geom_boxplot(outlier.color = "black", outlier.size = 2, width = 0.7) +
+  labs(title = "AQ_LIF", x = "Tratamiento", y = "Expression") +
+  scale_fill_manual(values = c("lightpink", "lightblue")) +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5, face = "bold", size=7), axis.title.x = element_text(size = 8), axis.title.y = element_text(size = 8), legend.text = element_text(size = 6),legend.title = element_text(size = 7))
+
+Plot9 <- ggplot(df, aes(fill = trat, y = AQ_MAPK1)) +
+  geom_boxplot(outlier.color = "black", outlier.size = 2, width = 0.7) +
+  labs(title = "AQ_MAPK1", x = "Tratamiento", y = "Expression") +
+  scale_fill_manual(values = c("lightpink", "lightblue")) +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5, face = "bold", size=7), axis.title.x = element_text(size = 8), axis.title.y = element_text(size = 8), legend.text = element_text(size = 6),legend.title = element_text(size = 7))
+
+Plot10 <- ggplot(df, aes(fill = trat, y = AQ_NOS2)) +
+  geom_boxplot(outlier.color = "black", outlier.size = 2, width = 0.7) +
+  labs(title = "AQ_NOS2", x = "Tratamiento", y = "Expression") +
+  scale_fill_manual(values = c("lightpink", "lightblue")) +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5, face = "bold", size=7), axis.title.x = element_text(size = 8), axis.title.y = element_text(size = 8), legend.text = element_text(size = 6),legend.title = element_text(size = 7))
+
+Plot11 <- ggplot(df, aes(fill = trat, y = AQ_IFNG)) +
+  geom_boxplot(outlier.color = "black", outlier.size = 2, width = 0.7) +
+  labs(title = "AQ_IFNG", x = "Tratamiento", y = "Expression") +
+  scale_fill_manual(values = c("lightpink", "lightblue")) +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5, face = "bold", size=7), axis.title.x = element_text(size = 8), axis.title.y = element_text(size = 8), legend.text = element_text(size = 6),legend.title = element_text(size = 7))
+
+Plot12 <- ggplot(df, aes(fill = trat, y = AQ_PDCD1)) +
+  geom_boxplot(outlier.color = "black", outlier.size = 2, width = 0.7) +
+  labs(title = "AQ_PDCD1", x = "Tratamiento", y = "Expression") +
+  scale_fill_manual(values = c("lightpink", "lightblue")) +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5, face = "bold", size=7), axis.title.x = element_text(size = 8), axis.title.y = element_text(size = 8), legend.text = element_text(size = 6),legend.title = element_text(size = 7))
+
+Plot13 <- ggplot(df, aes(fill = trat, y =  AQ_PPARG)) +
+  geom_boxplot(outlier.color = "black", outlier.size = 2, width = 0.7) +
+  labs(title = "AQ_PPARG", x = "Tratamiento", y = "Expression") +
+  scale_fill_manual(values = c("lightpink", "lightblue")) +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5, face = "bold", size=7), axis.title.x = element_text(size = 8), axis.title.y = element_text(size = 8), legend.text = element_text(size = 6),legend.title = element_text(size = 7))
+
+Plot14 <- ggplot(df, aes(fill = trat, y =  AQ_TGFB1)) +
+  geom_boxplot(outlier.color = "black", outlier.size = 2, width = 0.7) +
+  labs(title = "AQ_TFGB1", x = "Tratamiento", y = "Expression") +
+  scale_fill_manual(values = c("lightpink", "lightblue")) +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5, face = "bold", size=7), axis.title.x = element_text(size = 8), axis.title.y = element_text(size = 8), legend.text = element_text(size = 6),legend.title = element_text(size = 7))
+
+Plot15 <- ggplot(df, aes(fill = trat, y =   AQ_TNF)) +
+  geom_boxplot(outlier.color = "black", outlier.size = 2, width = 0.7) +
+  labs(title = "AQ_TNF", x = "Tratamiento", y = "Expression") +
+  scale_fill_manual(values = c("lightpink", "lightblue")) +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5, face = "bold", size=7), axis.title.x = element_text(size = 8), axis.title.y = element_text(size = 8), legend.text = element_text(size = 6),legend.title = element_text(size = 7))
+
+# Unión de todos los plots en una sola gráfica 
+library("patchwork")
+combined_plot <- Plot1 + Plot2 + Plot3 + Plot4 + Plot5 + Plot6 + Plot7 + Plot8 + Plot9 + Plot10 + Plot11 + Plot12 + Plot13 + Plot14 + Plot15 + plot_layout(ncol = 3)
+print(combined_plot)
