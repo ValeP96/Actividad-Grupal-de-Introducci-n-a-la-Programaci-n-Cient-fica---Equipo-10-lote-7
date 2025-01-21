@@ -68,8 +68,6 @@ datos2 <- df %>%
   select(starts_with("AQ_") -AQ_ADIPOQ, -AQ_NOX5)
   as.matrix(df)
 ```
-#Con esto se selecciona las columnas que quiero en el data frame. %>% es un pipe que indica que se esta trabajando sobre df
-#Nombrar a los pacientes como filas. Rownames solo va con data.frames
 ```{r}
 rownames(df) <- datos2$id 
 scale(df)
