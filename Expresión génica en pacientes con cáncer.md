@@ -16,6 +16,8 @@ library(tidyverse)
 library(ggplot2)
 library(pheatmap)
 library(patchwork)
+library(dplyr)
+library(car)
 ```
 
 ### Parámetros bioquímicos
@@ -178,11 +180,6 @@ Para la mayoría de los genes, se observa una mayor expresión génica en pacien
 En función de la edad, tendremos 2 categorías según la mediana de los datos (categoría 1: edad <percentil 50 de edad; categoría 2: edad >=percentil 50 de edad). 
 Tenemos una variable categórica que es edad y una numérica que es genes, como n es mayor que 30, pasamos a mirar la homogeneidad de varianzas.
 ```{r}
-# Cargar las librerías
-library(dplyr)
-library(car)
-```
-```{r boxplot tumor}
 # Calcular el percentil 50 (mediana) de la variable 'edad'
 percentil_50 <- median(df$edad, na.rm = TRUE)
 
