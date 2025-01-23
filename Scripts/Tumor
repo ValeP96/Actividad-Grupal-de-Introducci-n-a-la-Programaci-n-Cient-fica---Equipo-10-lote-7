@@ -1,11 +1,18 @@
-# Script para analizar la distribución de la expresión de genes comparados por tipo de tumor
+# Script para analizar la distribución de la expresión de genes comparados por los tres tipos de tumor que tiene el dataframe. 
+
+genes <- names(df)[startsWith(names(df), "AQ")]
 
 for (gen in genes) {
   boxplot <- df %>%
     ggplot(aes(x = tumor, y = .data[[gen]], fill = tumor)) +
     geom_boxplot() +
-    labs(title = gen, x = "Tumor", y = "Expresión Génica")
-print(boxplot)
+    scale_fill_manual(values = c("CM" = "lightcoral", "CCR" = "lightblue", "CP" = "lightgreen")) +
+    labs(
+      title = paste("Distribucion de la expresión de", gen, "por tipo de tumor"),
+      x = "Tipo de Tumor",
+      y = "Nivel de Expresión"
+    ) +
+    theme_classic() +
+    theme(legend.position = "none")
+  print(boxplot)
 }
-
-
