@@ -1,6 +1,6 @@
 # Vamos a crear un Heatmap para ver qué grado de correlación existe entre variables bioquímicas y los niveles de expresión de ciertos genes de una menera visual. El código de R que utilizamos es el siguiente: 
 
-#Cargar a principio del script las librerias con las que voy a trabajar
+#Cargar a principio del script las librerias
 library(ggplot2)
 library(dplyr)
 library(pheatmap)
